@@ -1,5 +1,5 @@
-import { AVPlaybackStatus, VideoProps } from 'expo-av/build/Video';
-import { ImageURISource, TextStyle } from 'react-native';
+import { AVPlaybackStatus, VideoProps } from 'expo-av';
+import { ImageURISource, TextStyle, ViewStyle } from 'react-native';
 import { Color } from 'csstype';
 import { ReactNode } from 'react';
 declare enum ErrorSeverity {
@@ -9,7 +9,7 @@ declare enum ErrorSeverity {
 declare type Error = {
     type: ErrorSeverity;
     message: string;
-    obj: object;
+    obj: Record<string, unknown>;
 };
 declare type Props = {
     videoProps: VideoProps;
@@ -30,6 +30,7 @@ declare type Props = {
     showFullscreenButton: boolean;
     iosThumbImage: ImageURISource;
     iosTrackImage: ImageURISource;
+    controlBarStyle: ViewStyle;
     textStyle: TextStyle;
     videoBackground: Color;
     debug: boolean;
@@ -41,7 +42,7 @@ declare type Props = {
     sliderColor: Color;
     disableSlider: boolean;
 };
-declare const _default: (props: Pick<Props, "videoProps"> & {
+declare const _default: (props: Pick<Props, "videoProps" | "controlBarStyle"> & {
     children?: null | undefined;
     playIcon?: (() => JSX.Element) | undefined;
     pauseIcon?: (() => JSX.Element) | undefined;

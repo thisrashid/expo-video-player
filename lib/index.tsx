@@ -143,6 +143,7 @@ type Props = {
   showFullscreenButton: boolean
   iosThumbImage: ImageURISource
   iosTrackImage: ImageURISource
+  controlBarStyle: ViewStyle
   textStyle: TextStyle
   videoBackground: Color
 
@@ -680,6 +681,7 @@ const VideoPlayer = (props: Props) => {
             justifyContent: 'space-between',
             paddingBottom: 4,
             paddingHorizontal: 4,
+            ...props.controlBarStyle
           }}
         >
           {/* Current time display */}

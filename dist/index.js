@@ -1,6 +1,6 @@
 import { __rest } from "tslib";
-import { Animated, Dimensions, Slider, Text, TouchableOpacity, TouchableWithoutFeedback, View, } from 'react-native';
 import { Audio, Video } from 'expo-av';
+import { Animated, Dimensions, Slider, Text, TouchableOpacity, TouchableWithoutFeedback, View, } from 'react-native';
 import { FullscreenEnterIcon, FullscreenExitIcon, PauseIcon, PlayIcon, ReplayIcon, Spinner, } from './assets/icons';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { withDefaultProps } from 'with-default-props';
@@ -352,9 +352,8 @@ const VideoPlayer = (props) => {
         videoHeight = videoWidth / screenRatio;
     }
     // Do not let the user override `ref`, `callback`, and `style`
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { ref, style, onPlaybackStatusUpdate, source } = videoProps, otherVideoProps = __rest(videoProps, ["ref", "style", "onPlaybackStatusUpdate", "source"]);
     const Control = (_a) => {
         var { callback, center, children, transparent = false } = _a, otherProps = __rest(_a, ["callback", "center", "children", "transparent"]);
@@ -432,6 +431,7 @@ const VideoPlayer = (props) => {
         
         {seekState !== SeekStates.Seeking &&
         (playbackState === PlaybackStates.Playing || playbackState === PlaybackStates.Paused) && (<CenteredView pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     style={{ opacity: controlsOpacity }}>
               <Control center={true} callback={togglePlay}>
@@ -452,17 +452,7 @@ const VideoPlayer = (props) => {
         {playbackState === PlaybackStates.Error && <ErrorText text={error}/>}
 
         
-        <Animated.View pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} style={{
-        position: 'absolute',
-        bottom: 0,
-        width: videoWidth,
-        opacity: controlsOpacity,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingBottom: 4,
-        paddingHorizontal: 4,
-    }}>
+        <Animated.View pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} style={Object.assign({ position: 'absolute', bottom: 0, width: videoWidth, opacity: controlsOpacity, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 4, paddingHorizontal: 4 }, props.controlBarStyle)}>
           
           <Text style={[textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
             {getMMSSFromMillis(playbackInstancePosition)}
